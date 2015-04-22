@@ -1,44 +1,434 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en-US">
 <head>
-  <meta charset="utf-8">
-  <title>Page Not Found :(</title>
-  <style>
-    ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-    ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
-    html { padding: 30px 10px; font-size: 20px; line-height: 1.4; color: #737373; background: #f0f0f0; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-    html, input { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
-    body { max-width: 500px; _width: 500px; padding: 30px 20px 50px; border: 1px solid #b3b3b3; border-radius: 4px; margin: 0 auto; box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff; background: #fcfcfc; }
-    h1 { margin: 0 10px; font-size: 50px; text-align: center; }
-    h1 span { color: #bbb; }
-    h3 { margin: 1.5em 0 0.5em; }
-    p { margin: 1em 0; }
-    ul { padding: 0 0 0 40px; margin: 1em 0; }
-    .container { max-width: 380px; _width: 380px; margin: 0 auto; }
-    /* google search */
-    #goog-fixurl ul { list-style: none; padding: 0; margin: 0; }
-    #goog-fixurl form { margin: 0; }
-    #goog-wm-qt, #goog-wm-sb { border: 1px solid #bbb; font-size: 16px; line-height: normal; vertical-align: top; color: #444; border-radius: 2px; }
-    #goog-wm-qt { width: 220px; height: 20px; padding: 5px; margin: 5px 10px 0 0; box-shadow: inset 0 1px 1px #ccc; }
-    #goog-wm-sb { display: inline-block; height: 32px; padding: 0 10px; margin: 5px 0 0; white-space: nowrap; cursor: pointer; background-color: #f5f5f5; background-image: -webkit-linear-gradient(rgba(255,255,255,0), #f1f1f1); background-image: -moz-linear-gradient(rgba(255,255,255,0), #f1f1f1); background-image: -ms-linear-gradient(rgba(255,255,255,0), #f1f1f1); background-image: -o-linear-gradient(rgba(255,255,255,0), #f1f1f1); -webkit-appearance: none; -moz-appearance: none; appearance: none; *overflow: visible; *display: inline; *zoom: 1; }
-    #goog-wm-sb:hover, #goog-wm-sb:focus { border-color: #aaa; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); background-color: #f8f8f8; }
-    #goog-wm-qt:focus, #goog-wm-sb:focus { border-color: #105cb6; outline: 0; color: #222; }
-    input::-moz-focus-inner { padding: 0; border: 0; }
-  </style>
+	<meta charset="UTF-8">
+	<title>Draw a rocket using css</title>
+	<meta name="description" content="Draw a rocket with pure css and html">
+  	<meta name="author" content="Yifeng Huang"/>
+  	<meta name="keywords" content="css3,html5,css,html,rocket"/>
+  	<meta name="viewport" content="width=device-width" />
+  	<link rel="stylesheet" href="/js/libs/prism-bb.css">
+	<style type="text/css" media="screen">
+		
+		#canvas-1{
+			width:300px;
+			height:580px;
+			margin:20px auto;
+			position: relative;
+			transform:rotate(70deg);
+			-webkit-transform:rotate(70deg);
+			-ms-transform:rotate(70deg);
+			-o-transform:rotate(70deg);
+			-moz-transform:rotate(70deg);
+		}
+		.body, .head, .head-bottom, .head-wrap, .window, .window-inner, .fin-wrap, .left-fin,.right-fin, .middle-fin, .fire, .fire-inner{
+			position: absolute;
+		}
+		.body{
+			width:150px;
+			height:400px;
+			background-color:rgb(222,222,222);
+			top:20px;
+			left:70px;
+			border-radius:70% 70% 60% 60%/70% 70%;
+			border:solid #888 1px;
+		}
+
+		.head{
+			background-color:rgb(230,18,18);
+			width:150px;
+			height:400px;
+			top:0px;
+			left:-12px;
+			border-radius:70% 70% 30% 30%;
+			
+		}
+		
+		.head-wrap{
+			overflow: hidden;
+			width:124px;
+			height:70px;
+			left:12px;
+			top:-1px;
+		}
+		.head-bottom{
+			width:114px;
+			height:20px;
+			background-color:rgb(230,18,18);
+			border-radius:50%;
+			top:59px;
+			left:18px;
+		}
+
+		.window{
+			width:80px;
+			height:80px;
+			background-color:#ddd;
+			border:1px #888 dashed;
+			top:110px;
+			left:33px;
+			border-radius:50%;
+		}
+		.window-inner{
+			width:66px;
+			height:66px;
+			background-color:rgb(18,205,230);
+			background-color:rgba(18,205,230,.6);
+			top:6px;
+			left:6px;
+			border-radius:50%;
+			border:1px #888 solid;
+		}
+
+		.fin-wrap{
+			width:216px;
+			height:150px;
+			top:321px;
+			left:38px;
+		}
+
+		.left-fin, .right-fin{
+			width:62px;
+			height:163px;
+			background-color:rgb(230,18,18);
+		}
+		.left-fin{
+			left:0;
+			border-radius:89% 1% 117% 8%/107% 50% 80% 8%;
+		}
+		.right-fin{
+			right:0;
+			border-radius:1% 89% 8% 117%/50% 107% 8% 80%;
+		}
+		.middle-fin{
+			width:30px;
+			height:175px;
+			top:310px;
+			left:59px;
+			background-color:rgb(230,18,18);
+			border-radius:50% 50% 50% 50%/30% 30% 70% 70%;
+		}
+		.fire{
+			width: 78px;
+			height:180px;
+			background-color:rgb(250,189,20);
+			background-color:rgba(250,189,20,.7);
+			border-radius:50% 50% 50% 50%/30% 30% 70% 70%;
+			top:412px;
+			left:106px;
+		}
+		body{
+			background:url(img/star-bg.png);
+		}
+		#main-wrapper{
+			width:960px;
+			margin:20px auto;
+			background-color:rgb(61,74,143);
+			background-color:rgba(61,74,143,.5);
+			color:#fff;
+			padding:20px;
+			box-shadow:0 5px 20px #666;
+			border-radius:10px;
+		}
+
+		a:link,a:visited{
+			color:#c55;
+			transition:all .3s ease;
+			-webkit-transition:all .3s ease;
+			-o-transition:all .3s ease;
+			-moz-transition:all .3s ease;
+		}
+		a:hover{
+			color:#c22;
+		}
+		.footer{
+			font:1.3em/1.6em  'EraserRegular', sans-serif;
+			text-align:right;
+		}
+		.intro{
+			width:680px;
+			margin:20px auto;
+		}
+		
+		h1{
+			width:680px;
+			margin:20px auto 0;
+			padding-bottom:10px;
+			color:#eee;
+			text-align:center;
+			font:5em  'EraserRegular', sans-serif;
+			border:2px dashed #ccc;
+			text-shadow:1px 1px 2px #222;
+			box-shadow:
+				inset 0 100px 80px rgba(210,10,10,.2),
+				inset 0 -100px 80px rgba(10,210,210,.2);
+			border-radius:20px;
+		}
+		.canv-wrap{
+			margin:-50px auto 20px;
+			width:600px;
+		}
+
+		h2{
+			width:680px;
+			margin:20px auto 0;
+			color:#fff;
+			text-shadow:1px 1px 1px #333;
+			text-align:center;
+			font:3em  'EraserRegular', sans-serif;
+			background-color:rgb(2,16,12);
+			background-color:rgba(2,16,12,.8);
+			box-shadow:inset 0 0 10px #000,
+			0 0 10px #888;
+			padding: 15px 0;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+		em{
+			color:#c22;
+		}
+
+		.code-wrap{
+			width:680px;
+			margin:30px auto;
+		}
+
+		.code{
+			box-shadow:inset 0 0 20px #000,
+			0 0 10px #888;
+			margin-top:0;
+			font-size:14px;
+			border-bottom-left-radius: 10px;
+			border-bottom-right-radius: 10px;
+		}
+
+		@font-face {
+			font-family: 'EraserRegular';
+			src: url('/fonts/EraserRegular-webfont.eot');
+			src: url('/fonts/EraserRegular-webfont.eot?#iefix') format('embedded-opentype'),
+		    	url('/fonts/EraserRegular-webfont.woff') format('woff'),
+		    	url('/fonts/EraserRegular-webfont.ttf') format('truetype'),
+		    	url('/fonts/EraserRegular-webfont.svg#EraserRegular') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+
+	    .t:link, .t:visited{
+	    	color:#5d9ac6;
+	    	text-decoration: none;
+	    }
+	    .s:link, .s:visited{
+	    	color:#c95a5a;
+	    	text-decoration: none;
+	    }
+	    .t:hover{
+	    	color:#268dd6;
+	   	}
+	   	.s:hover{
+	    	color:#c22;
+	    }  
+	</style>
 </head>
 <body>
-  <div class="container">
-    <h1>Not found <span>:(</span></h1>
-    <p>Sorry, but the page you were trying to view does not exist.</p>
-    <p>It looks like this was the result of either:</p>
-    <ul>
-      <li>a mistyped address</li>
-      <li>an out-of-date link</li>
-    </ul>
-    <script>
-      var GOOG_FIXURL_LANG = (navigator.language || '').slice(0,2),GOOG_FIXURL_SITE = location.host;
-    </script>
-    <script src="http://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
-  </div>
+	<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  
+<!--tracking code-->
+	<script type="text/javascript">
+	<!--
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-29300086-2']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	  -->
+	</script>
+	<!--end tracking code-->
+<div id="main-wrapper">
+		
+	<h1>Draw a ROCKET using <br /> <em>css3 &amp; HTML</em> <br />  only!</h1>
+	<div class="canv-wrap">
+	<div id="canvas-1">
+		<div class="fire"></div>
+		<div class="fin-wrap">
+			<div class="left-fin"></div>
+			<div class="right-fin"></div>
+		</div>
+		<div class="body">
+			<div class="head-wrap">
+				<div class="head"></div>
+			</div>
+			<div class="head-bottom"></div>
+			<div class="window">
+				<div class="window-inner"></div>
+			</div>
+			<div class="middle-fin"></div>
+		</div>
+	</div>
+	</div>
+
+	
+		<p class="intro">
+			View the <a href="http://jsfiddle.net/winddweb/a3kjA/" title="Demo">demo on jsfiddle</a>. This is an "image" with pure code. Just for fun but maybe it is one possibility of the future? Codes are much smaller in size than images anyway. Cheers!
+		</p>
+		<p class="intro">
+			Oh, almost forget one thing. Obviously, this will not work in <em>ancient</em>  browsers like <em>ie7 and ie6</em>. Maybe I should just forget them. 
+		</p>
+	
+	<div class="code-wrap">
+	<h2>HTML</h2>
+		<pre class="code">
+	<code class="language-markup">
+	&lt;div id="canvas-1"&gt;
+		&lt;div class="fire"&gt;&lt;/div&gt;
+		&lt;div class="fin-wrap"&gt;
+			&lt;div class="left-fin"&gt;&lt;/div&gt;
+			&lt;div class="right-fin"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div class="body"&gt;
+			&lt;div class="head-wrap"&gt;
+				&lt;div class="head"&gt;&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class="head-bottom"&gt;&lt;/div&gt;
+			&lt;div class="window"&gt;
+				&lt;div class="window-inner"&gt;&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class="middle-fin"&gt;&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	</code>
+		</pre>	
+	</div>
+	<div class="code-wrap">
+		<h2>CSS</h2>
+		
+
+		<pre class="code">
+	<code class="language-css">
+	#canvas-1{
+	    width:300px;
+	    height:580px;
+	    margin:20px auto;
+	    position: relative;
+	    transform:rotate(70deg);
+	    -webkit-transform:rotate(70deg);
+	    -ms-transform:rotate(70deg);
+	    -o-transform:rotate(70deg);
+	    -moz-transform:rotate(70deg);
+	}
+	.body, .head, .head-bottom, .head-wrap, .window, .window-inner, .fin-wrap, 
+	.left-fin,.right-fin, .middle-fin, .fire, .fire-inner{
+	    position: absolute;
+	}
+	.body{
+	    width:150px;
+	    height:400px;
+	    background-color:rgb(222,222,222);
+	    top:20px;
+	    left:70px;
+	    border-radius:70% 70% 60% 60%/70% 70%;
+	    border:solid #888 1px;
+	}
+
+	.head{
+	    background-color:rgb(230,18,18);
+	    width:150px;
+	    height:400px;
+	    top:0px;
+	    left:-12px;
+	    border-radius:70% 70% 30% 30%;
+	    
+	}
+
+	.head-wrap{
+	    overflow: hidden;
+	    width:124px;
+	    height:70px;
+	    left:12px;
+	    top:-1px;
+	}
+	.head-bottom{
+	    width:114px;
+	    height:20px;
+	    background-color:rgb(230,18,18);
+	    border-radius:50%;
+	    top:59px;
+	    left:18px;
+	}
+
+	.window{
+	    width:80px;
+	    height:80px;
+	    background-color:#ddd;
+	    border:1px #888 dashed;
+	    top:110px;
+	    left:33px;
+	    border-radius:50%;
+	}
+	.window-inner{
+	    width:66px;
+	    height:66px;
+	    background-color:rgb(18,205,230);
+	    background-color:rgba(18,205,230,.6);
+	    top:6px;
+	    left:6px;
+	    border-radius:50%;
+	    border:1px #888 solid;
+	}
+
+	.fin-wrap{
+	    width:216px;
+	    height:150px;
+	    top:321px;
+	    left:38px;
+	}
+
+	.left-fin, .right-fin{
+	    width:62px;
+	    height:163px;
+	    background-color:rgb(230,18,18);
+	}
+	.left-fin{
+	    left:0;
+	    border-radius:89% 1% 117% 8%/107% 50% 80% 8%;
+	}
+	.right-fin{
+	    right:0;
+	    border-radius:1% 89% 8% 117%/50% 107% 8% 80%;
+	}
+	.middle-fin{
+	    width:30px;
+	    height:175px;
+	    top:310px;
+	    left:59px;
+	    background-color:rgb(230,18,18);
+	    border-radius:50% 50% 50% 50%/30% 30% 70% 70%;
+	}
+	.fire{
+	    width: 78px;
+	    height:180px;
+	    background-color:rgb(250,189,20);
+	    background-color:rgba(250,189,20,.7);
+	    border-radius:50% 50% 50% 50%/30% 30% 70% 70%;
+	    top:412px;
+	    left:106px;
+	}
+	</code>
+		</pre>
+	</div>
+
+
+	<p class="footer intro">
+		Author: Yifeng Huang. <br />
+		Follow me on: <a class="t link" href="https://twitter.com/#!/Winddweb">twitter</a> <br />
+		Or for Chinese: <a href="http://www.weibo.com/winddweb" class="s link">sina weibo</a> <br />
+		My website: <a href="http://yifeng.iwebs.ws" title="My Website">Yifeng</a> <br />
+		Code highlighted by <a href="http://prismjs.com/">PRISM</a>
+	</p>
+</div>
+<script type="text/javascript" src="/js/libs/prism.js"></script>
 </body>
 </html>
